@@ -1,0 +1,28 @@
+format_version: 10
+pipelines:
+  yaml:
+    group: aaaa
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-3aae20a:
+        git: https://github.com/leesoyeon0/sum-test
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    stages:
+    - yaml:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          yaml:
+            timeout: 0
+            tasks:
+            - exec:
+                command: ls
+                run_if: passed
